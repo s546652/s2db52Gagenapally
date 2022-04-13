@@ -18,6 +18,7 @@ var usersRouter = require('./routes/users');
 var houseRouter = require('./routes/house');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
+var house = require("./models/house");
 
 var app = express();
 
@@ -53,6 +54,23 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+// We can seed the collection if needed on server start 
+async function recreateDB(){ 
+  // Delete everything 
+  await House.deleteMany(); 
+ 
+  let instance1 = new 
+  House({house_rooms:4,  house_area:213, house_rent:25}); 
+  instance1.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("First object saved") 
+  }); 
+} 
+ 
+let reseed = true; 
+if (reseed) { recreateDB();}
 
 
 module.exports = app;
