@@ -6,9 +6,12 @@ var logger = require('morgan');
 
 const connectionString =  process.env.MONGO_CON 
 mongoose = require('mongoose'); 
-mongoose.connect(connectionString,  
-{useNewUrlParser: true, 
-useUnifiedTopology: true}); 
+mongoose.connect(connectionString, 
+        {
+          useNewUrlParser: true, 
+          useUnifiedTopology: true
+        }
+      ); 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -50,5 +53,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
