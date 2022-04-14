@@ -4,29 +4,65 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-const connectionString = named.env.MONGO_CON //process.env.MONGO_CON 
-mongoose = require('mongoose'); 
-
-mongoose.connect(connectionString, 
-        {
-          useNewUrlParser: true, 
-          useUnifiedTopology: true
-        }
-      ); 
+const connectionString =
+process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString,
+{useNewUrlParser: true,
+useUnifiedTopology: true});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var houseRouter = require('./routes/house');
-var addmodsRouter = require('./routes/addmods');
-var selectorRouter = require('./routes/selector');
-var house = require("./models/house");
-
+var addmodsRouter=require('./routes/addmods');
+var selectorRouter=require('./routes/selector');
+var house = require('./models/house');
+var resourceRouter=require('./routes/resource');
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+
+// We can seed the collection if needed on server start
+async function recreateDB(){
+ // Delete everything
+ await house.deleteMany();
+
+ let instance1 = new
+house({house_rooms:1, house_area:"205sqrt",
+house_rent:145});
+ instance1.save( function(err,doc) {
+ if(err) return console.error(err);
+ console.log("First object saved")
+ });
+
+let instance2 = new
+house({house_rooms:2, house_area:"195sqrt",
+house_rent:130});
+ instance2.save( function(err,doc) {
+ if(err) return console.error(err);
+ console.log("Second object saved")
+ });
+
+ let instance3 = new
+house({house_rooms:2, house_area:"225sqrt",
+house_rent:245});
+ instance3.save( function(err,doc) {
+ if(err) return console.error(err);
+ console.log("Third object saved")
+ });
+
+}
+
+// List of all Costumes
+
+
+let reseed = true;
+if (reseed) { recreateDB();}
+
+// We can seed the collection if needed on server start
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -37,8 +73,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/house',houseRouter);
 app.use('/addmods',addmodsRouter);
-app.use('/selector', selectorRouter);
-
+app.use('/selector',selectorRouter);
+app.use('/resource',resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -55,23 +91,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-// We can seed the collection if needed on server start 
-async function recreateDB(){ 
-  // Delete everything 
-  await House.deleteMany(); 
- 
-  let instance1 = new 
-  House({house_rooms:4,  house_area:213, house_rent:25}); 
-  instance1.save( function(err,doc) { 
-      if(err) return console.error(err); 
-      console.log("First object saved") 
-  }); 
-} 
- 
-let reseed = true; 
-if (reseed) { recreateDB();}
 
 
 module.exports = app;

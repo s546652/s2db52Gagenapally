@@ -5,24 +5,7 @@ block content
   p House Details
   div(class="container-fluid")
         div(class="row")
-            -
-                let house = [
-                    {
-                        "house_rooms": 1,
-                        "house_area": "100sqft",
-                        "house_rent": 450
-                    },
-                    {
-                        "house_rooms": 2,
-                        "house_area": "130sqft",
-                        "house_rent": 550
-                    },
-                    {
-                        "house_rooms": 3,
-                        "house_area": "200sqft",
-                        "house_rent": 650
-                    }                   
-                ]
+            - let house = results
             each v,index in house
                 div(class="col-sm-2" onclick=`buy(${index})`) #{v.house_rooms}
                 
