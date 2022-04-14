@@ -28,9 +28,9 @@ exports.house_create_post = async function(req, res) {
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
     // {"costume_type":"goat", "cost":12, "size":"large"}
-    document.flavour = req.body.flavour;
-    document.quantity = req.body.quantity;
-    document.cost = req.body.cost;
+    document.house_rooms = req.body.house_rooms;
+    document.house_area = req.body.house_area;
+    document.house_rent = req.body.house_rent;
     try{
     let result = await document.save();
     res.send(result);
