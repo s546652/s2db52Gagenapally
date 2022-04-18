@@ -1,0 +1,30 @@
+extends layout 
+
+block content
+    h1=title 
+
+    -let houseid = toShow._id
+    - let house_rooms = toShow.house_rooms
+    - let house_area = toShow.house_area
+    - let house_rent = toShow.house_rent
+    div 
+        .row 
+            div(class='houseAttr mr-3') House ID is:  
+            div #{houseid}
+        div.row
+            div(class='houseAttr mr-3') House Room is:
+            div #{house_rooms}
+        div.row
+            div(class='houseAttr mr-3') House Area is:
+            div #{house_area}
+        div.row
+            div(class='houseAttr mr-3') House Rent is:
+            div #{house_rent}
+        
+
+
+
+
+
+
+
