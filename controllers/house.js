@@ -24,6 +24,7 @@ exports.house_detail = async function(req, res) {
      res.send(result) 
  } catch (error) { 
      res.status(500) 
+     console.log("test--")
      res.send(`{"error": document for id ${req.params.id} not found`); 
  } 
 };
@@ -94,6 +95,7 @@ ${JSON.stringify(req.body)}`)
 // Handle a show all view
 exports.house_view_all_Page = async function(req, res) {
     try{
+        console.log('test'+house.find())
     thehouse = await house.find();
     res.render('house', { title: 'house Search Results', results: thehouse });
     }
