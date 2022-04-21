@@ -2,15 +2,6 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-
-app.use(require('express-session')({ 
-  secret: 'keyboard cat', 
-  resave: false, 
-  saveUninitialized: false 
-})); 
-app.use(passport.initialize()); 
-app.use(passport.session()); 
-
 var logger = require('morgan');
 
 var passport = require('passport');
@@ -27,8 +18,7 @@ passport.use(new LocalStrategy(
       } 
       return done(null, user); 
     }); 
-  } 
-)
+  }));
 
 
 
@@ -92,6 +82,15 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(require('express-session')({ 
+  secret: 'keyboard cat', 
+  resave: false, 
+  saveUninitialized: false 
+})); 
+app.use(passport.initialize()); 
+app.use(passport.session()); 
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -105,7 +104,7 @@ app.use('/resource',resourceRouter);
 // passport config 
 // Use the existing connection 
 // The Account model  
-var Account =require('./models/account')); 
+var Account =require('./models/account'); 
  
 passport.use(new LocalStrategy(Account.authenticate())); 
 passport.serializeUser(Account.serializeUser()); 
