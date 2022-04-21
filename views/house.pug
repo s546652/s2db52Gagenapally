@@ -13,8 +13,19 @@ block content
                 
                 div(class="col-sm-2" onclick=`buy(${index})`) #{v.house_rent}
                 br
+                
+  div(class="container-fluid") 
+    div(class="row m-1") 
+      each item in house  
+        - let destination = `dispatch(\"/house/update?id=${item._id}\")` 
+        div(class="row-sm-2", class="m-1") Item #{item.house_rooms}(#{item.house_area}) is #{item.house_rent} 
+          button.btn( class="btn-primary ml-1", onclick= destination) Update 
+
   script.                
         function buy(intemNo)
         {
               alert(`you purchased Item ${intemNo+1}`)
         }
+        function dispatch(path){ 
+            window.location.href=path 
+            } 
