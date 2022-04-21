@@ -1,30 +1,23 @@
-extends layout 
-
+extends layout
 block content
-    h1=title 
-
-    -let houseid = toShow._id
-    - let house_rooms = toShow.house_rooms
-    - let house_area = toShow.house_area
-    - let house_rent = toShow.house_rent
-    div 
-        .row 
-            div(class='houseAttr mr-3') House ID is:  
-            div #{houseid}
-        div.row
-            div(class='houseAttr mr-3') House Room is:
-            div #{house_rooms}
-        div.row
-            div(class='houseAttr mr-3') House Area is:
-            div #{house_area}
-        div.row
-            div(class='houseAttr mr-3') House Rent is:
-            div #{house_rent}
-        
-
-
-
-
-
-
-
+    h1= title
+        if (toShow == null)
+            h2 No instance to view details
+        else
+            - let houseid = toShow._id
+            - let house_rooms = toShow.house_rooms
+            - let house_area = toShow.house_area
+            - let house_rent = toShow.house_rent
+            div
+                div.row
+                    div(class='houseAttr mr-3') house ID is:
+                    div(class='values') #{houseid}
+                div.row
+                    div(class='houseAttr mr-3') house rooms is:
+                    div(class='values') #{house_rooms}
+                div.row
+                    div(class='houseAttr mr-3') house area is:
+                    div(class='values') #{house_area}
+                div.row
+                    div(class='houseAttr mr-3') house rent is:
+                    div(class='values') #{house_rent}

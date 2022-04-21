@@ -7,6 +7,22 @@ a {
   color: #00B7FF;
 }
 .houseAttr{
-  background-color: aquamarine;
-  width: 120px;
+  background-color: rgba(231,192,250,0.64);
+  width: 225px;
+  box-sizing: border-box;
+  border-style: double;
+  border-color: rgba(184, 76, 201, 0.74);
+  border-radius: 5px;
+  border-width: thick;
+  font-size: medium;
+
+}
+.values {
+  border: outset;
+  width: 225px;
+  border-color: rgb(255, 127, 195);
+  margin-top: 12px;
+  margin-bottom: 12px;
+  font-size: medium;
+
 }

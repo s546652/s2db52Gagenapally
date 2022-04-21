@@ -18,7 +18,6 @@ var addmodsRouter=require('./routes/addmods');
 var selectorRouter=require('./routes/selector');
 var house = require('./models/house');
 var resourceRouter=require('./routes/resource');
-var detail=require('./routes/detail');
 var app = express();
 
 // view engine setup
@@ -57,9 +56,6 @@ house_rent:245});
 
 }
 
-// List of all Costumes
-
-
 let reseed = true;
 if (reseed) { recreateDB();}
 
@@ -76,7 +72,6 @@ app.use('/house',houseRouter);
 app.use('/addmods',addmodsRouter);
 app.use('/selector',selectorRouter);
 app.use('/resource',resourceRouter);
-app.use('/house/detail',detail);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
