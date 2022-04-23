@@ -30,6 +30,8 @@ mongoose.connect(connectionString,
 useUnifiedTopology: true});
 
 var indexRouter = require('./routes/index');
+//var registerRouter = require('./routes/register');
+//var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
 var houseRouter = require('./routes/house');
 var addmodsRouter=require('./routes/addmods');
@@ -94,6 +96,9 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+//app.use('/register', registerRouter);
+//app.use('/login', loginRouter);
+
 app.use('/users', usersRouter);
 app.use('/house',houseRouter);
 app.use('/addmods',addmodsRouter);
