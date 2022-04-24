@@ -29,3 +29,10 @@ block content
         function dispatch(path){ 
             window.location.href=path 
             } 
+        const secured = (req, res, next) => { 
+            if (req.user){ 
+              return next(); 
+            } 
+            req.session.returnTo = req.originalUrl; 
+            res.redirect("/login"); 
+          } 

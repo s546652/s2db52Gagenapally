@@ -54,7 +54,7 @@ exports.house_create_post = async function(req, res) {
  //res.send('NOT IMPLEMENTED: house delete DELETE ' + req.params.id);
 //};
 // Handle house delete on DELETE. 
-// Handle Costume delete on DELETE.
+// Handle house delete on DELETE.
 exports.house_delete = async function(req, res) {
     console.log("delete " + req.params.id)
     try {
@@ -120,7 +120,7 @@ exports.house_view_one_Page = async function(req, res) {
     }
    };
 
-   // Handle building the view for creating a costume.
+   // Handle building the view for creating a house.
 // No body, no in path parameter, no query.
 // Does not need to be async
 exports.house_create_Page = function(req, res) {
@@ -134,7 +134,7 @@ exports.house_create_Page = function(req, res) {
     }
    };
 
-   // Handle building the view for updating a costume.
+   // Handle building the view for updating a house.
 // query provides the id
 exports.house_update_Page = async function(req, res) {
     console.log("update view for item "+req.query.id)

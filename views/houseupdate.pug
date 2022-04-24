@@ -4,24 +4,24 @@ block content
     if (toShow == null)
         h2 No instance to view update
     else
-        - let gooogleid = toShow._id
-        - let itemname = toShow.itemname
-        - let quantity = toShow.quantity
-        - let price = toShow.price
+        - let houseid = toShow._id
+        - let house_room = toShow.house_room
+        - let house_area = toShow.house_area
+        - let house_rent = toShow.house_rent
 
         div.row(class='mb-2')
             div.mr-1 ID is
-            div #{gooogleid}
-        - let actionid = "/resource/gooogle/" + gooogleid
+            div #{houseid}
+        - let actionid = "/resource/house/" + houseid
         form(id='gooogleForm', action= actionid, method="PUT")
             div.form-group
-                label.houseAttr(for='itemname') item name
-                input#house_rooms(type='number', name='item name', value= item name )
+                label.houseAttr(for='house_rooms') house rooms
+                input#house_rooms(type='number', name='house_rooms', value= house_rooms )
             div.form-group
-                label.houseAttr(for='house_area') house size
+                label.houseAttr(for='house_area') house area
                 input#house_area(type='text', name='house_area', value= house_area )
             div.form-group
-                label.houseAttr(for='house_rent') house cost
+                label.houseAttr(for='house_rent') house rent
                 input#house_rent(type='number', name='house_rent', value= house_rent )
             input(type="submit")
         script.

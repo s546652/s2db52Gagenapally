@@ -42,8 +42,14 @@ router.get('/login', function(req, res) {
     res.render('login', { title: 'House App Login', user : req.user }); 
 }); 
  
-router.post('/login', passport.authenticate('local'), function(req, res) { 
+/*router.post('/login', passport.authenticate('local'), function(req, res) { 
     res.redirect('/'); 
+}); */
+
+router.post('/login', passport.authenticate('local'), function(req, res) { 
+  if(req.session.returnTo) 
+    res.redirect(req.session.returnTo); 
+  res.redirect('/'); 
 }); 
  
 router.get('/logout', function(req, res) { 
@@ -54,5 +60,16 @@ router.get('/logout', function(req, res) {
 router.get('/ping', function(req, res){ 
     res.status(200).send("pong!"); 
 }); 
+
+// A little function to check if we have an authorized user and continue on 
+//or 
+// redirect to login. 
+const secured = (req, res, next) => { 
+    if (req.user){ 
+      return next(); 
+    } 
+    req.session.returnTo = req.originalUrl; 
+    res.redirect("/login"); 
+  } 
  
 module.exports = router; 
